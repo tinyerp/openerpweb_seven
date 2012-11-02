@@ -1,0 +1,21 @@
+======================================
+OpenERP Web 7.0 for OpenERP server 6.1
+======================================
+
+This addon adds a thin layer to make the Web addons 7.0 compatible
+with server 6.1
+
+There's no guarantee at all; it is only a proof of concept to experiment with
+the new web client.
+
+Instructions
+------------
+
+Install the various parts:
+
+- lp:openobject-server/6.1
+- lp:openobject-addons/6.1
+- lp:openerp-web
+- and this addon
+
+Then launch the server with additional switch ``--load web,web_seven``.
