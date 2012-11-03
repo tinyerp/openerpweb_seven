@@ -13,7 +13,7 @@
     'category': 'Custom Modules',
     'description': """Adapt the new web client for OpenERP 6.1.""",
     'author': 'Florent Xicluna',
-    'website': '',
+    'website': 'https://code.launchpad.net/~florent.x/openobject-addons/6.1-web_seven',
     'license': 'Other OSI approved licence',
     'depends': ['web'],
     'js': ['static/src/js/compat61.js'],
