@@ -4,12 +4,18 @@
 def patch_web7():
     import babel
     import os.path
+    import sys
+
+    import openerp.addons.web
     try:
         from openerp.addons.web import http as openerpweb
     except ImportError:
         # OpenERP Web 6.1
         return
-    from openerp.addons.web.controllers.main import WebClient
+
+    # Self-reference for 6.1 modules which import 'web.common.http'
+    openerp.addons.web.common = openerp.addons.web
+    sys.modules['openerp.addons.web.common'] = openerp.addons.web
 
     # Adapt the OpenERP Web 7.0 method for OpenERP 6.1 server
     @openerpweb.jsonrequest
@@ -41,4 +47,4 @@ def patch_web7():
                         transl["messages"].append({'id': x.id, 'string': x.string})
         return {"modules": translations_per_module,
                 "lang_parameters": lang_params}
-    WebClient.translations = translations
+    openerp.addons.web.controllers.main.WebClient.translations = translations
