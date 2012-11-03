@@ -4,6 +4,8 @@
 #   Copyright © 2012 - Florent Xicluna
 #   All Rights Reserved
 #
+#   License: BSD
+#
 ##############################################################################
 {
     'name': 'Web client 7.0 for OpenERP 6.1 server',
@@ -12,7 +14,7 @@
     'description': """Adapt the new web client for OpenERP 6.1.""",
     'author': 'Florent Xicluna',
     'website': '',
-    'license': 'BSD',
+    'license': 'Other OSI approved licence',
     'depends': ['web'],
     'js': ['static/src/js/compat61.js'],
     'installable': True,
