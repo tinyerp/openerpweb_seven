@@ -4,7 +4,6 @@
 def patch_web7():
     import babel
     import os.path
-    import sys
 
     import openerp.addons.web
     try:
@@ -12,10 +11,6 @@ def patch_web7():
     except ImportError:
         # OpenERP Web 6.1
         return
-
-    # Self-reference for 6.1 modules which import 'web.common.http'
-    openerp.addons.web.common = openerp.addons.web
-    sys.modules['openerp.addons.web.common'] = openerp.addons.web
 
     # Adapt the OpenERP Web 7.0 method for OpenERP 6.1 server
     @openerpweb.jsonrequest
