@@ -19,3 +19,8 @@ Install the various parts:
 - and this addon lp:~florent.x/openobject-addons/6.1-web_seven
 
 Then launch the server with additional switch ``--load web_seven,web``.
+
+Links
+-----
+
+* `Fork me on GitHub <https://github.com/florentx/openerpweb_seven>`_
