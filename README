@@ -15,7 +15,7 @@ Install the various parts:
 
 - lp:openobject-server/6.1
 - lp:openobject-addons/6.1
-- lp:openerp-web
+- lp:openerp-web/7.0
 - and this addon lp:~florent.x/openobject-addons/6.1-web_seven
 
-Then launch the server with additional switch ``--load web,web_seven``.
+Then launch the server with additional switch ``--load web_seven,web``.

@@ -4,6 +4,7 @@
 def patch_web7():
     import babel
     import os.path
+    import sys
 
     import openerp.addons.web
     try:
@@ -11,6 +12,10 @@ def patch_web7():
     except ImportError:
         # OpenERP Web 6.1
         return
+
+    # Self-reference for 6.1 modules which import 'web.common.http'
+    openerp.addons.web.common = openerp.addons.web
+    sys.modules['openerp.addons.web.common'] = openerp.addons.web
 
     # Adapt the OpenERP Web 7.0 method for OpenERP 6.1 server
     @openerpweb.jsonrequest
@@ -43,3 +48,15 @@ def patch_web7():
         return {"modules": translations_per_module,
                 "lang_parameters": lang_params}
     openerp.addons.web.controllers.main.WebClient.translations = translations
+
+    # For Python loading, the order is --load web_seven,web
+    # For the js stuff, the order should be ['web', 'web_seven']
+    def module_boot(req, db=None):
+        server_wide_modules = openerp.conf.server_wide_modules
+        try:
+            openerp.conf.server_wide_modules = server_wide_modules[::-1]
+            return main_module_boot(req, db=db)
+        finally:
+            openerp.conf.server_wide_modules = server_wide_modules
+    main_module_boot = openerp.addons.web.controllers.main.module_boot
+    openerp.addons.web.controllers.main.module_boot = module_boot
